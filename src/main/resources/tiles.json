@@ -1,0 +1,626 @@
+[
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "id": 1
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "id": 2
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 1
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 1
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 1
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 1
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 1
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "field",
+        "crowns": 0
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 3
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 6
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 5
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 4
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "id": 3
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 1
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "trees",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 7
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 8
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "id": 9
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "water",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 11
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "id": 10
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 1
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "meadow",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "id": 12
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  },
+  {
+    "tile": {
+      "square": {
+        "type": "swamp",
+        "crowns": 0
+      },
+      "square": {
+        "type": "hills",
+        "crowns": 2
+      },
+      "id": 0
+    }
+  }
+]
