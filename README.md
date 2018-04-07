@@ -2,6 +2,8 @@
 
 This project is to experiment with machine learning.
 
+For a video review of Kingdomino, see: http://www.dicetower.com/game-video/kingdomino-review-zee-garcia
+
 The project will consist of phases:
 
 1. POC: Code a very basic working automated 2 player game, playing first legal position found.
