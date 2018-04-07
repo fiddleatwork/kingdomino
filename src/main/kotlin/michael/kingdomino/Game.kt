@@ -21,7 +21,7 @@ class Game {
     fun start() {
         val random = Random(System.currentTimeMillis())
         var tiles = tileRepository.findAll()
-        tiles.shuffled(random).subList(0, tiles.size/2).toMutableList()
+        tiles = tiles.shuffled(random).subList(0, tiles.size/2).toMutableList()
 
         log.debug("Tiles:")
         tiles.forEach { log.debug(it.toString()) }
