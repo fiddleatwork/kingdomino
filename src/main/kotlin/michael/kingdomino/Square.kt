@@ -1,7 +1,7 @@
 package michael.kingdomino
 
-data class Square(val squareType: SquareType, val crowns: Int) {
+data class Square(val type: SquareType, val crowns: Int) {
 
-    override fun toString(): String = "${squareType.name.toCharArray()[0]}:$crowns"
+    override fun toString(): String = "${type.name.toCharArray()[0]}:$crowns"
 
 }
