@@ -19,7 +19,7 @@ class TileRepository {
 
     fun findAll(): List<Tile> {
         val lines = Files.readAllLines(Paths.get(tilesCsv.uri), StandardCharsets.UTF_8)
-        log.info("lines = $lines")
+        log.debug("lines = $lines")
         val tiles: MutableList<Tile> = mutableListOf()
         lines.forEach {
             if (it.isNotEmpty()) {
