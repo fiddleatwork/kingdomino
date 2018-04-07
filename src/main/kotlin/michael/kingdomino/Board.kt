@@ -7,4 +7,17 @@ class Board {
     init {
         map[4][4] = Square(SquareType.Center, 0)
     }
+
+    fun render(): String {
+        var result: String = ""
+        for(x in 0..8) {
+            var row: String = ""
+            for(y in 0..8) {
+                row += "[" + map[x][y] + "]"
+            }
+            result += row + "\n"
+        }
+        return result
+    }
+
 }

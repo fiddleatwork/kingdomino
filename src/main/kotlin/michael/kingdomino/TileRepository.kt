@@ -17,7 +17,7 @@ class TileRepository {
     private lateinit var tilesCsv: Resource
 
 
-    fun findAll(): List<Tile> {
+    fun findAll(): MutableList<Tile> {
         val lines = Files.readAllLines(Paths.get(tilesCsv.uri), StandardCharsets.UTF_8)
         log.debug("lines = $lines")
         val tiles: MutableList<Tile> = mutableListOf()
@@ -30,7 +30,7 @@ class TileRepository {
                                 Square(SquareType.valueOf(tokens[1]), Integer.parseInt(tokens[2])),
                                 Square(SquareType.valueOf(tokens[3]), Integer.parseInt(tokens[4]))
                         ),
-                        0))
+                        -1))
             }
         }
         return tiles

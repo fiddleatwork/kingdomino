@@ -16,15 +16,12 @@ class Game {
 
     private var nextTiles: MutableList<Tile> = mutableListOf()
 
-    private var player1: Player = Player(1)
-
-    private var player2: Player = Player(2)
+    private var players = listOf(Player(0), Player(1))
 
     fun start() {
-        val allTiles = tileRepository.findAll()
         val random = Random(System.currentTimeMillis())
-        Collections.shuffle(allTiles, random)
-        val tiles = allTiles.subList(0, allTiles.size/2).toMutableList()
+        var tiles = tileRepository.findAll()
+        tiles.shuffled(random).subList(0, tiles.size/2).toMutableList()
 
         log.debug("Tiles:")
         tiles.forEach { log.debug(it.toString()) }
@@ -32,7 +29,7 @@ class Game {
         dealTiles(tiles, currentTiles)
         dealTiles(tiles, nextTiles)
 
-        val playerOrder: MutableList<Int> = mutableListOf(1,1,2,2)
+        val playerOrder: MutableList<Int> = mutableListOf(0,0,1,1)
         playerOrder.shuffle(random)
         log.debug("Player Order: $playerOrder")
 
@@ -44,9 +41,48 @@ class Game {
         log.debug("Current Tiles:")
         currentTiles.forEach { log.debug(it.toString()) }
 
+        log.debug("Starting game loop..")
+        while(true) {
+            while(currentTiles.size > 0) {
+                val tile = currentTiles.removeAt(0)
+                val player = players[tile.player]
+                player.play(tile)
+
+                if(nextTiles.isNotEmpty()) {
+                    log.debug("Player " + player.id + " is picking tile for next round..")
+                    for (i in 3 downTo 0) {
+                        if (nextTiles[i].player == -1) {
+                            nextTiles[i].player = player.id
+                            break
+                        }
+                    }
+                }
+                log.debug("Next Tiles:")
+                nextTiles.forEach { log.debug(it.toString()) }
+            }
+            log.debug("Finished round")
+            if(nextTiles.isEmpty()) {
+                log.debug("No more tiles, finished.")
+                break
+            }
+            currentTiles.addAll(nextTiles)
+            nextTiles.clear()
+            dealTiles(tiles, nextTiles)
+
+            log.debug("For next round:")
+            log.debug("Current Tiles:")
+            currentTiles.forEach { log.debug(it.toString()) }
+            log.debug("Next Tiles:")
+            nextTiles.forEach { log.debug(it.toString()) }
+        }
+        log.debug("Game loop finished.")
     }
 
     private fun dealTiles(tiles: MutableList<Tile>, destination: MutableList<Tile>) {
+        if(tiles.size == 0) {
+            log.debug("No more tiles")
+            return
+        }
         for (i in 0..3) {
             destination.add(tiles.removeAt(0))
         }
