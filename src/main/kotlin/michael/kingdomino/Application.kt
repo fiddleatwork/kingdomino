@@ -16,8 +16,12 @@ class Application {
 
     @Bean
     fun init() = CommandLineRunner {
-        log.info("")
-        game.start()
+        log.info("Start")
+        val n = 0
+        for(i in 0..n) {
+            game.start()
+        }
+        log.info("Finished")
     }
 }
 

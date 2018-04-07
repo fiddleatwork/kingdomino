@@ -83,6 +83,8 @@ class Game {
             nextTiles.forEach { log.debug(it.toString()) }
         }
         log.debug("Game loop finished.")
+        log.info("Player 0 score = " + players[0].board.score())
+        log.info("Player 1 score = " + players[1].board.score())
     }
 
     private fun dealTiles(tiles: MutableList<Tile>, destination: MutableList<Tile>) {
