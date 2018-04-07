@@ -29,7 +29,8 @@ class TileRepository {
                         listOf(
                                 Square(SquareType.valueOf(tokens[1]), Integer.parseInt(tokens[2])),
                                 Square(SquareType.valueOf(tokens[3]), Integer.parseInt(tokens[4]))
-                        )))
+                        ),
+                        0))
             }
         }
         return tiles

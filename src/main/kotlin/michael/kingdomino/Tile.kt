@@ -1,5 +1,3 @@
 package michael.kingdomino
 
-data class Tile(val id: Int, val squares: List<Square>) {
-
-}
+data class Tile(val id: Int, val squares: List<Square>, var player: Int)
