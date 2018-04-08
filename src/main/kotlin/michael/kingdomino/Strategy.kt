@@ -2,6 +2,6 @@ package michael.kingdomino
 
 interface Strategy {
 
-    fun play(board: Board, tile: Tile)
+    fun play(board: Board, tile: Tile) : Board
 
 }

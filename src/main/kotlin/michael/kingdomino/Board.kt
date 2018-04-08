@@ -1,16 +1,36 @@
 package michael.kingdomino
 
 import org.slf4j.LoggerFactory
+import java.util.*
 
-class Board {
+data class Board(private val map: Array<Array<Square>>) {
 
     private val log = LoggerFactory.getLogger(Board::class.java)
 
-    private val map = Array(9) { Array(9) { Square(SquareType.Empty, 0) } }
-
-    init {
+    constructor() : this(Array(9) { Array(9) { Square(SquareType.Empty, 0) } }) {
         map[4][4] = Square(SquareType.Center, 0)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Board
+
+        if (!Arrays.equals(map, other.map)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return Arrays.hashCode(map)
+    }
+
+    //private val map = Array(9) { Array(9) { Square(SquareType.Empty, 0) } }
+
+//    init {
+//        map[4][4] = Square(SquareType.Center, 0)
+//    }
 
     fun render(): String {
         var result = "\n"
@@ -117,19 +137,22 @@ class Board {
 
     private fun inRange(x: Int, y: Int) = x in 0..8 && y in 0..8
 
-    fun place(tile: Tile, direction: Direction, x: Int, y: Int) {
+    fun place(tile: Tile, direction: Direction, x: Int, y: Int): Board {
         if (accept(tile, direction, x, y)) {
             log.debug("Placing $tile in $direction at ($x,$y)")
             val x2 = x + direction.secondSquareOffsetX
             val y2 = y + direction.secondSquareOffsetY
-            map[x][y] = tile.squares[0]
+            val newMap = map.copyOf()
+            newMap[x][y] = tile.squares[0]
             tile.squares[0].x = x
             tile.squares[0].y = y
-            map[x2][y2] = tile.squares[1]
+            newMap[x2][y2] = tile.squares[1]
             tile.squares[1].x = x2
             tile.squares[1].y = y2
+            return Board(newMap)
         } else {
             log.debug("Cannot place $tile in $direction at ($x,$y)\") because it's not a valid move")
+            return this
         }
     }
 

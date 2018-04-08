@@ -10,7 +10,7 @@ data class Player(val id: Int, private val strategy: Strategy) {
 
     fun play(tile: Tile) {
         log.debug("Player $id is playing $tile")
-        strategy.play(board, tile)
+        board = strategy.play(board, tile)
     }
 
 

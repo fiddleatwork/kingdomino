@@ -47,9 +47,9 @@ class Game {
                 val tile = currentTiles.removeAt(0)
                 val player = players[tile.player]
 
-                log.debug("")
-                log.debug("Player $player.id board before play:")
-                log.debug(player.board.render())
+                //log.debug("")
+                //log.debug("Player $player.id board before play:")
+                //log.debug(player.board.render())
                 player.play(tile)
                 log.debug("")
                 log.debug("Player $player.id board after play:")
