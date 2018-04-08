@@ -16,7 +16,7 @@ class Game {
 
     private var nextTiles: MutableList<Tile> = mutableListOf()
 
-    private var players = listOf(Player(0, FirstAvailableStrategy()), Player(1, FirstAvailableStrategy()))
+    private var players = listOf(Player(0, BestScoreStrategy()), Player(1, FirstAvailableStrategy()))
 
     fun start() {
         val random = Random(System.currentTimeMillis())
