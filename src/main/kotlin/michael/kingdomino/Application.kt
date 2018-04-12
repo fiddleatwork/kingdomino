@@ -17,10 +17,23 @@ class Application {
     @Bean
     fun init() = CommandLineRunner {
         log.info("Start")
-        val n = 0
+        val n = 10000
+        var player1Wins = 0
+        var player2Wins = 0
+        var ties = 0
         for(i in 0..n) {
-            game.start()
+            log.info("Game # $i")
+            val result = game.start()
+            when {
+                result.outcome == Outcome.Tie -> ties++
+                result.winner.id == 0 -> player1Wins++
+                result.winner.id == 1 -> player2Wins++
+            }
         }
+        log.info("Player 1 wins: $player1Wins = " + player1Wins.toDouble()/n)
+        log.info("Player 2 wins: $player2Wins = " + player2Wins.toDouble()/n)
+        log.info("Ties: $ties")
+
         log.info("Finished")
     }
 }
