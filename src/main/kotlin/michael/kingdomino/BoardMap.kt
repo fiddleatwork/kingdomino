@@ -11,10 +11,23 @@ data class BoardMap(private val map: Array<Array<Square>>) {
         map[4][4] = Square(SquareType.Center, 0)
     }
 
-    fun withSquare(x: Int, y:Int, square: Square) : BoardMap {
-        val newMap = map.copyOf()
-        newMap[x][y] = square
+    fun deepCopy() : BoardMap {
+        val newMap = Array(9) { Array(9) { Square(SquareType.Empty, 0) } }
+        for(x in 0..8) {
+            for(y in 8 downTo 0) {
+                newMap[x][y] = map[x][y]
+            }
+        }
         return BoardMap(newMap)
+    }
+
+    fun withSquare(x: Int, y:Int, square: Square) : BoardMap {
+//        val newMap = map.copyOf()
+//        newMap[x][y] = square
+//        return BoardMap(newMap)
+        val newBoardMap = deepCopy()
+        newBoardMap.map[x][y] = square
+        return newBoardMap
     }
 
     fun square(x: Int, y: Int) : Square {

@@ -6,10 +6,14 @@ data class Board(private val map: BoardMap = BoardMap()) {
 
     private val log = LoggerFactory.getLogger(Board::class.java)
 
+    fun deepCopy(): Board {
+        return Board(map.deepCopy())
+    }
+
     fun render(): String {
-        var result = "\n"
+        var result = "\n  " + renderXAxis() + "\n"
         for (y in 8 downTo 0) {
-            var row = ""
+            var row = "$y "
             for (x in 0..8) {
                 if (map.square(x,y).type == SquareType.Empty) {
                     row += "[   ]"
@@ -18,6 +22,15 @@ data class Board(private val map: BoardMap = BoardMap()) {
                 }
             }
             result += row + "\n"
+        }
+        result += "  " + renderXAxis() + "\n"
+        return result
+    }
+
+    private fun renderXAxis(): String {
+        var result = ""
+        for(i in 0..8) {
+            result += "  $i  "
         }
         return result
     }
@@ -114,6 +127,7 @@ data class Board(private val map: BoardMap = BoardMap()) {
     fun place(tile: Tile, direction: Direction, x: Int, y: Int): Board {
         if (accept(tile, direction, x, y)) {
             log.debug("Placing $tile in $direction at ($x,$y)")
+            //log.error("b4 place " + render())
             val x2 = x + direction.secondSquareOffsetX
             val y2 = y + direction.secondSquareOffsetY
 
@@ -130,7 +144,7 @@ data class Board(private val map: BoardMap = BoardMap()) {
             return Board(newMapWithSecondSquare)
         } else {
             log.debug("Cannot place $tile in $direction at ($x,$y)\") because it's not a valid move")
-            return this
+            throw IllegalArgumentException("Cannot place $tile in $direction at ($x,$y)\") because it's not a valid move")
         }
     }
 
@@ -172,5 +186,9 @@ data class Board(private val map: BoardMap = BoardMap()) {
         counted[coordinates.x][coordinates.y] = true
         val neighbors = neighborsOf(coordinates.x,coordinates.y).filter{it.type == squareType && !counted[it.coordinates.x][it.coordinates.y]}
         neighbors.forEach{score(counted, squareType, it.coordinates, pointCount)}
+    }
+
+    fun squareAt(x: Int, y: Int): Square {
+        return map.square(x,y)
     }
 }

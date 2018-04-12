@@ -21,9 +21,41 @@ class BoardTest {
         log.debug(render)
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun `should not place tile in invalid location`() {
+        val board = Board()
+        board.place(
+                Tile(0,
+                listOf(Square(SquareType.Field, 0), Square(SquareType.Field, 1))),
+                Direction.LeftToRight,
+                0,
+                0)
+
+    }
+
+    @Test
+    fun `should place tile`() {
+        val board = Board()
+        log.info(board.render())
+        val newBoard = board.place(
+                Tile(0,
+                        listOf(Square(SquareType.Field, 0), Square(SquareType.Field, 1))),
+                Direction.LeftToRight,
+                4,
+                5)
+        log.info("old board" + board.render())
+        assertThat(board.squareAt(4,5)).isEqualTo(Square(SquareType.Empty, 0))
+        assertThat(board.squareAt(5,5)).isEqualTo(Square(SquareType.Empty, 0))
+        log.info("new board" + newBoard.render())
+        assertThat(newBoard.squareAt(4,5)).isEqualTo(Square(SquareType.Field, 0, Coordinates(4,5)))
+        assertThat(newBoard.squareAt(5,5)).isEqualTo(Square(SquareType.Field, 1, Coordinates(5,5)))
+    }
+
+
     /**
      * The board setup is not valid, this was used for debugging purposes and left as a template for future tests.
      */
+    // TODO Rewrite test using board.play API
     @Test
     fun `should calculate score`() {
 
@@ -37,7 +69,7 @@ class BoardTest {
 //        [   ][   ][   ][   ][   ][   ][   ][   ][   ]
 //        [   ][   ][   ][   ][   ][   ][   ][   ][   ]
 
-        var map = Array(9) { Array(9) { Square(SquareType.Empty, 0) } }
+        val map = Array(9) { Array(9) { Square(SquareType.Empty, 0) } }
         map[4][6] = Square(SquareType.Field, 0)
         map[5][6] = Square(SquareType.Field, 0)
         map[6][6] = Square(SquareType.Swamp, 1)
@@ -74,7 +106,7 @@ class BoardTest {
             }
         }
 
-        var board = Board(BoardMap(map))
+        val board = Board(BoardMap(map))
         assertThat(board.score()).isEqualTo(68)
 
 
