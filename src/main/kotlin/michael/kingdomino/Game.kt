@@ -14,7 +14,6 @@ class Game {
     @Autowired
     private lateinit var tileRepository: TileRepository
 
-
     fun start(): GameResult {
         val players = listOf(
                 Player(0, BestScoreStrategy()),
@@ -29,11 +28,10 @@ class Game {
 
         log.debug("Assigning players automatically, with best tile priority.")
         for (i in 3 downTo 0) {
-            tileBox.currentTiles[i].player = playerOrder.removeAt(0)
+            tileBox = tileBox.assignCurrentTile(i, playerOrder.removeAt(0))
         }
 
-        log.debug("Current Tiles:")
-        tileBox.currentTiles.forEach { log.debug(it.toString()) }
+        tileBox.logCurrentTiles()
 
         log.debug("Starting game loop..")
         while (true) {
@@ -53,27 +51,24 @@ class Game {
                 if (tileBox.hasNext()) {
                     log.debug("Player " + player.id + " is picking tile for next round..")
                     for (i in 3 downTo 0) {
-                        if (tileBox.nextTiles[i].player == -1) {
-                            tileBox.nextTiles[i].player = player.id
+                        if (tileBox.isNextTileUnclaimed(i)) {
+                            tileBox = tileBox.assignNextTile(i,player.id)
                             break
                         }
                     }
                 }
-                log.debug("Next Tiles:")
-                tileBox.nextTiles.forEach { log.debug(it.toString()) }
+                tileBox.logNextTiles()
             }
             log.debug("Finished round")
-            if (tileBox.nextTiles.isEmpty()) {
+            if (!tileBox.hasNext()) {
                 log.debug("No more tiles, finished.")
                 break
             }
             tileBox = tileBox.dealTiles()
 
             log.debug("For next round:")
-            log.debug("Current Tiles:")
-            tileBox.currentTiles.forEach { log.debug(it.toString()) }
-            log.debug("Next Tiles:")
-            tileBox.nextTiles.forEach { log.debug(it.toString()) }
+            tileBox.logCurrentTiles()
+            tileBox.logNextTiles()
         }
         log.debug("Game loop finished.")
         log.info("Player 0 score = " + players[0].board.score())
