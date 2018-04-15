@@ -17,11 +17,11 @@ class Application {
     @Bean
     fun init() = CommandLineRunner {
         log.info("Start")
-        val n = 10000
+        val n = 1
         var player1Wins = 0
         var player2Wins = 0
         var ties = 0
-        for(i in 0..n) {
+        for(i in 1..n) {
             log.info("Game # $i")
             val result = game.start()
             when {
