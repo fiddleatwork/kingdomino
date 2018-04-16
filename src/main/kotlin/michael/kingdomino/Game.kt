@@ -9,28 +9,18 @@ import java.util.*
 class Game {
     private val log = LoggerFactory.getLogger(Game::class.java)
 
-    @Autowired
-    private lateinit var tileRepository: TileRepository
-
     private val random = Random(System.currentTimeMillis())
 
-    private var currentTiles: MutableList<Tile> = mutableListOf()
-
-    private var nextTiles: MutableList<Tile> = mutableListOf()
+    @Autowired
+    private lateinit var tileRepository: TileRepository
 
     fun start(): GameResult {
         val players = listOf(
                 Player(0, BestScoreStrategy()),
 //                Player(0, FirstAvailableStrategy()),
                 Player(1, FirstAvailableStrategy()))
-        var tiles = tileRepository.findAll()
-        tiles = tiles.shuffled(random).subList(0, tiles.size / 2).toMutableList()
-
-        log.debug("Tiles:")
-        tiles.forEach { log.debug(it.toString()) }
-
-        dealTiles(tiles, currentTiles)
-        dealTiles(tiles, nextTiles)
+        var tileBox = TileBox(tileRepository, 2)
+//        tileBox = tileBox.dealTiles()
 
         val playerOrder: MutableList<Int> = mutableListOf(0, 0, 1, 1)
         playerOrder.shuffle(random)
@@ -38,16 +28,16 @@ class Game {
 
         log.debug("Assigning players automatically, with best tile priority.")
         for (i in 3 downTo 0) {
-            currentTiles[i].player = playerOrder.removeAt(0)
+            tileBox = tileBox.assignCurrentTile(i, playerOrder.removeAt(0))
         }
 
-        log.debug("Current Tiles:")
-        currentTiles.forEach { log.debug(it.toString()) }
+        tileBox.logCurrentTiles()
 
         log.debug("Starting game loop..")
         while (true) {
-            while (currentTiles.size > 0) {
-                val tile = currentTiles.removeAt(0)
+            while (tileBox.hasCurrent()) {
+                tileBox = tileBox.takeCurrent()
+                val tile = tileBox.current()
                 val player = players[tile.player]
 
                 //log.debug("")
@@ -58,32 +48,27 @@ class Game {
                 log.debug("Player $player.id board after play:")
                 log.debug(player.board.render())
 
-                if (nextTiles.isNotEmpty()) {
+                if (tileBox.hasNext()) {
                     log.debug("Player " + player.id + " is picking tile for next round..")
                     for (i in 3 downTo 0) {
-                        if (nextTiles[i].player == -1) {
-                            nextTiles[i].player = player.id
+                        if (tileBox.isNextTileUnclaimed(i)) {
+                            tileBox = tileBox.assignNextTile(i,player.id)
                             break
                         }
                     }
                 }
-                log.debug("Next Tiles:")
-                nextTiles.forEach { log.debug(it.toString()) }
+                tileBox.logNextTiles()
             }
             log.debug("Finished round")
-            if (nextTiles.isEmpty()) {
+            if (!tileBox.hasNext()) {
                 log.debug("No more tiles, finished.")
                 break
             }
-            currentTiles.addAll(nextTiles)
-            nextTiles.clear()
-            dealTiles(tiles, nextTiles)
+            tileBox = tileBox.dealTiles()
 
             log.debug("For next round:")
-            log.debug("Current Tiles:")
-            currentTiles.forEach { log.debug(it.toString()) }
-            log.debug("Next Tiles:")
-            nextTiles.forEach { log.debug(it.toString()) }
+            tileBox.logCurrentTiles()
+            tileBox.logNextTiles()
         }
         log.debug("Game loop finished.")
         log.info("Player 0 score = " + players[0].board.score())
@@ -97,15 +82,4 @@ class Game {
         }
     }
 
-    private fun dealTiles(tiles: MutableList<Tile>, destination: MutableList<Tile>) {
-        if (tiles.size == 0) {
-            log.debug("No more tiles")
-            return
-        }
-        for (i in 0..3) {
-            destination.add(tiles.removeAt(0))
-        }
-        log.debug("Tiles:")
-        destination.forEach { log.debug(it.toString()) }
-    }
 }
